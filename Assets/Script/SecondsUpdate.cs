@@ -6,6 +6,7 @@ public class SecondsUpdate : MonoBehaviour
 {
     float timeStartOffset = 0;
     bool gotStartTime = false;
+    float speed = 0.5f;
     void Update()
     {
         if (!gotStartTime)
@@ -14,6 +15,6 @@ public class SecondsUpdate : MonoBehaviour
             gotStartTime = true;
         }
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
-                                            Time.realtimeSinceStartup - timeStartOffset);
+                                            (Time.realtimeSinceStartup - timeStartOffset)*speed);
     }
 }
