@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -144,7 +144,7 @@ MonoBehaviour:
   rotationSpeed: 100
   transGun: {fileID: 3052892970279238297}
   gun: {fileID: 782611292}
-  bulletObj: {fileID: 5709102001472371925, guid: 38c67ac8a2f2e93498e70b9e197532b2, type: 3}
+  bulletObj: {fileID: 828501467}
 --- !u!65 &620903249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,6 +406,11 @@ Transform:
   m_Father: {fileID: 3052892970279238297}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -9.979, y: 0, z: 0}
+--- !u!1 &828501467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5709102001472371925, guid: 767932e96ec835647960f3a85c2b92f0, type: 3}
+  m_PrefabInstance: {fileID: 7349411618687898956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
