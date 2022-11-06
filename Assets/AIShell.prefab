@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3466909193903497390}
   - component: {fileID: 4762887693665058159}
   - component: {fileID: 1837119909}
-  - component: {fileID: 8181396150398352709}
   - component: {fileID: 1004603971228517564}
+  - component: {fileID: 8789094316895849272}
   m_Layer: 0
   m_Name: AIShell
   m_TagString: Untagged
@@ -124,22 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacaa7a7568b94e06b8e07095cfb1978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &8181396150398352709
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5709102001472371925}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1004603971228517564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +137,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 195792, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+--- !u!54 &8789094316895849272
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5709102001472371925}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

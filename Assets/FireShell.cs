@@ -11,12 +11,13 @@ public class FireShell : MonoBehaviour
     float speed = 15;
     float rotSpeed = 5;
     float moveSpeed = 1;
+   
 
     // Start is called before the first frame update
     void CreateBullet()
     {
-        GameObject shell = Instantiate(bullet, turret.transform.position, turret.transform.rotation);
-        shell.GetComponent<Rigidbody>().velocity = speed * turretBase.forward;
+            GameObject shell = Instantiate(bullet, turret.transform.position, turret.transform.rotation);
+            shell.GetComponent<Rigidbody>().velocity = speed * turretBase.forward;
     }
 
     float? RotateTurret()
