@@ -2,18 +2,57 @@
 
 public class Flock : MonoBehaviour {
 
+    // Access the FlockManager script
     public FlockManager myManager;
+    // Prefab initial speed;
     float speed;
+    // Bool used to check the swim limits
+    bool turning = false;
 
     void Start() {
 
+        // Assign a random speed to each this prefab
         speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
     }
 
     // Update is called once per frame
     void Update() {
 
-        ApplyRules();
+        // Determine the bounding box of the manager cube
+        Bounds b = new Bounds(myManager.transform.position, myManager.swimLimits * 2.0f);
+
+        // If the fish is outside the bounds of the cube then start turning around
+        if (!b.Contains(transform.position)) {
+
+            turning = true;
+        } else {
+
+            turning = false;
+        }
+
+        // Test if we're turning
+        if (turning) {
+
+            // Turn towards the centre of the cube
+            Vector3 direction = myManager.transform.position - transform.position;
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                                                  Quaternion.LookRotation(direction),
+                                                  myManager.rotationSpeed * Time.deltaTime);
+        } else {
+
+            // 10% chance of altering prefab speed
+            if (Random.Range(0.0f, 100.0f) < 10.0f) {
+
+                speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
+            }
+
+            // 20& chance of applying the flocking rules
+            if (Random.Range(0.0f, 100.0f) < 20.0f) {
+
+                ApplyRules();
+            }
+        }
+
         transform.Translate(0.0f, 0.0f, Time.deltaTime * speed);
     }
 
@@ -51,7 +90,8 @@ public class Flock : MonoBehaviour {
 
         if (groupSize > 0) {
 
-            vcentre = vcentre / groupSize;
+            // Find the average centre of the group then add a vector to the target (goalPos)
+            vcentre = vcentre / groupSize + (myManager.goalPos - this.transform.position);
             speed = gSpeed / groupSize;
 
             Vector3 direction = (vcentre + vavoid) - transform.position;
