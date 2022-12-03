@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-
 
 public class SubGoal {
 
@@ -24,7 +21,6 @@ public class GAgent : MonoBehaviour {
 
     public List<GAction> actions = new List<GAction>();
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
-    public WorldStates beliefs = new WorldStates();
 
     GPlanner planner;
     Queue<GAction> actionQueue;
@@ -35,8 +31,8 @@ public class GAgent : MonoBehaviour {
     void Start() {
 
         GAction[] acts = this.GetComponents<GAction>();
-        foreach (GAction a in acts) 
-        {
+        foreach (GAction a in acts) {
+
             actions.Add(a);
         }
     }
@@ -46,5 +42,3 @@ public class GAgent : MonoBehaviour {
 
     }
 }
-
-

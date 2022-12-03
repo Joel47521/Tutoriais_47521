@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Graph {
     List<Edge> edges = new List<Edge>();
-    List<Node> nodes = new List<Node>();
-    List<Node> pathList = new List<Node>();
+    List<NodeGr> nodes = new List<NodeGr>();
+    List<NodeGr> pathList = new List<NodeGr>();
 
     public Graph() { }
 
     public void AddNode(GameObject id, bool removeRenderer = true, bool removeCollider = true, bool removeId = true) {
-        Node node = new Node(id);
+        NodeGr node = new NodeGr(id);
         nodes.Add(node);
 
         //remove colliders and mesh renderer
@@ -26,8 +26,8 @@ public class Graph {
     }
 
     public void AddEdge(GameObject fromNode, GameObject toNode) {
-        Node from = findNode(fromNode);
-        Node to = findNode(toNode);
+        NodeGr from = findNode(fromNode);
+        NodeGr to = findNode(toNode);
 
         if (from != null && to != null) {
             Edge e = new Edge(from, to);
@@ -36,8 +36,8 @@ public class Graph {
         }
     }
 
-    Node findNode(GameObject id) {
-        foreach (Node n in nodes) {
+    NodeGr findNode(GameObject id) {
+        foreach (NodeGr n in nodes) {
             if (n.getId() == id)
                 return n;
         }
@@ -54,22 +54,22 @@ public class Graph {
     }
 
     public void printPath() {
-        foreach (Node n in pathList) {
+        foreach (NodeGr n in pathList) {
             Debug.Log(n.id.name);
         }
     }
 
 
     public bool AStar(GameObject startId, GameObject endId) {
-        Node start = findNode(startId);
-        Node end = findNode(endId);
+        NodeGr start = findNode(startId);
+        NodeGr end = findNode(endId);
 
         if (start == null || end == null) {
             return false;
         }
 
-        List<Node> open = new List<Node>();
-        List<Node> closed = new List<Node>();
+        List<NodeGr> open = new List<NodeGr>();
+        List<NodeGr> closed = new List<NodeGr>();
         float tentative_g_score = 0;
         bool tentative_is_better;
 
@@ -80,7 +80,7 @@ public class Graph {
 
         while (open.Count > 0) {
             int i = lowestF(open);
-            Node thisnode = open[i];
+            NodeGr thisnode = open[i];
             if (thisnode.id == endId)  //path found
             {
                 reconstructPath(start, end);
@@ -90,7 +90,7 @@ public class Graph {
             open.RemoveAt(i);
             closed.Add(thisnode);
 
-            Node neighbour;
+            NodeGr neighbour;
             foreach (Edge e in thisnode.edgelist) {
                 neighbour = e.endNode;
                 neighbour.g = thisnode.g + distance(thisnode, neighbour);
@@ -122,7 +122,7 @@ public class Graph {
         return false;
     }
 
-    public void reconstructPath(Node startId, Node endId) {
+    public void reconstructPath(NodeGr startId, NodeGr endId) {
         pathList.Clear();
         pathList.Add(endId);
 
@@ -134,7 +134,7 @@ public class Graph {
         pathList.Insert(0, startId);
     }
 
-    float distance(Node a, Node b) {
+    float distance(NodeGr a, NodeGr b) {
         float dx = a.xPos - b.xPos;
         float dy = a.yPos - b.yPos;
         float dz = a.zPos - b.zPos;
@@ -142,7 +142,7 @@ public class Graph {
         return (dist);
     }
 
-    int lowestF(List<Node> l) {
+    int lowestF(List<NodeGr> l) {
         float lowestf = 0;
         int count = 0;
         int iteratorCount = 0;

@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeG{
+public class Node {
 
-    public NodeG parent;
+    public Node parent;
     public float cost;
     public Dictionary<string, int> state;
     public GAction action;
 
     // Constructor
-    public NodeG(NodeG parent, float cost, Dictionary<string, int> allStates, GAction action) {
+    public Node(Node parent, float cost, Dictionary<string, int> allStates, GAction action) {
 
         this.parent = parent;
         this.cost = cost;
@@ -32,8 +32,8 @@ public class GPlanner {
             }
         }
 
-        List<NodeG> leaves = new List<NodeG>();
-        NodeG start = new NodeG(null, 0.0f, GWorld.Instance.GetWorld().GetStates(), null);
+        List<Node> leaves = new List<Node>();
+        Node start = new Node(null, 0.0f, GWorld.Instance.GetWorld().GetStates(), null);
 
         bool success = BuildGraph(start, leaves, usableActions, goal);
 
@@ -43,8 +43,8 @@ public class GPlanner {
             return null;
         }
 
-        NodeG cheapest = null;
-        foreach (NodeG leaf in leaves) {
+        Node cheapest = null;
+        foreach (Node leaf in leaves) {
 
             if (cheapest == null) {
 
@@ -55,7 +55,7 @@ public class GPlanner {
             }
         }
         List<GAction> result = new List<GAction>();
-        NodeG n = cheapest;
+        Node n = cheapest;
 
         while (n != null) {
 
@@ -83,12 +83,12 @@ public class GPlanner {
         return queue;
     }
 
-    private bool BuildGraph(NodeG parent, List<NodeG> leaves, List<GAction> usableActions, Dictionary<string, int> goal) {
+    private bool BuildGraph(Node parent, List<Node> leaves, List<GAction> usableActions, Dictionary<string, int> goal) {
 
         bool foundPath = false;
         foreach (GAction action in usableActions) {
 
-            if (action.IsAchievableGiven(parent.state)) {
+            if (action.IsAhievableGiven(parent.state)) {
 
                 Dictionary<string, int> currentState = new Dictionary<string, int>(parent.state);
 
@@ -100,7 +100,7 @@ public class GPlanner {
                     }
                 }
 
-                NodeG node = new NodeG(parent, parent.cost + action.cost, currentState, action);
+                Node node = new Node(parent, parent.cost + action.cost, currentState, action);
 
                 if (GoalAchieved(goal, currentState)) {
 

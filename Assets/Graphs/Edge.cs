@@ -1,10 +1,10 @@
 public class Edge {
     // Start and end nodes
-    public Node startNode;
-    public Node endNode;
+    public NodeGr startNode;
+    public NodeGr endNode;
 
     // Create a link
-    public Edge(Node from, Node to) {
+    public Edge(NodeGr from, NodeGr to) {
         startNode = from;
         endNode = to;
     }
