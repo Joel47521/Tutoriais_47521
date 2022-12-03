@@ -10,8 +10,8 @@ public abstract class GAction : MonoBehaviour {
     public float cost = 1.0f;
     // Target where the action is going to take place
     public GameObject target;
-    // For game objects with tags
-    public GameObject targetTag;
+    // Store the tag
+    public string targetTag;
     // Duration the action should take
     public float duration = 0.0f;
     // An array of WorldStates of preconditions
